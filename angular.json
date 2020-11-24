@@ -121,8 +121,13 @@
               "devServerTarget": "gogodashboard:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "gogodashboard"
 }

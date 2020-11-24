@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "gogomedia-dashboard": {
+      "hosting": {
+        "gogodashboard": [
+          "gogomedia-dashboard"
+        ]
+      }
+    }
+  }
+}
