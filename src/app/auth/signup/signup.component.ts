@@ -22,9 +22,6 @@ export class SignupComponent implements OnInit {
     this.store.select('auth').subscribe((authState: AuthState) => {
       this.isLoading = authState.loading;
       this.error = authState.authError;
-      if (this.error) {
-        console.log(this.error);
-      }
       if (this.router.url === '/signup') {
         this.isLoginMode = false;
       }

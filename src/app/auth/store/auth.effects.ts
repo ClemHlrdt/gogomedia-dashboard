@@ -25,8 +25,6 @@ const handleAuthentication = (
   userId: string,
   token: string
 ) => {
-  console.log('In handleAuthentication');
-
   const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
   const user = new User(email, userId, token, expirationDate);
   localStorage.setItem('userData', JSON.stringify(user));
@@ -40,14 +38,13 @@ const handleAuthentication = (
 };
 
 const handleError = (errorRes: any) => {
-  console.log('In handleError');
   let errorMessage = 'An unknown error occurred!';
   if (!errorRes.error || !errorRes.error.error) {
     return of(AuthActions.authenticateFail(errorMessage));
   }
   switch (errorRes.error.error.message) {
     case 'EMAIL_EXISTS':
-      errorMessage = 'This email exists already';
+      errorMessage = 'This email already exists';
       break;
     case 'EMAIL_NOT_FOUND':
       errorMessage = 'This email does not exist.';
@@ -80,8 +77,6 @@ export class AuthEffects {
             this.authService.setLogoutTimer(+resData.expiresIn * 1000);
           }),
           map((resData: any) => {
-            console.log(resData);
-
             return handleAuthentication(
               +resData.expiresIn,
               resData.email,
@@ -90,8 +85,6 @@ export class AuthEffects {
             );
           }),
           catchError((errorRes) => {
-            console.log(errorRes);
-
             return handleError(errorRes);
           })
         );
