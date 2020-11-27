@@ -5,10 +5,12 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:stats": "NODE_ENV=production ng build --stats-json",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:prod": "NODE_ENV=production ng build --prod"
+    "build:prod": "NODE_ENV=production ng build --prod",
+    "analyze": "webpack-bundle-analyzer dist/tastyn/stats.json"
   },
   "private": true,
   "dependencies": {
