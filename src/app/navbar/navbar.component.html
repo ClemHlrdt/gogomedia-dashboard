@@ -1,0 +1,73 @@
+<nav class="flex items-center justify-between flex-wrap bg-gray-500 p-6">
+  <div class="flex items-center flex-shrink-0 text-white mr-6">
+    <a class="nav__brand" routerLink="/">
+      <img
+        class="h-8 mr-2"
+        src="https://gogomedia.pl/en/wp-content/themes/gogomedia/library/images/logo-gogomedia-software-house.png"
+        alt="tastyn logo"
+      />
+    </a>
+  </div>
+  <div class="block lg:hidden">
+    <button
+      (click)="onOpen()"
+      class="flex items-center px-3 py-2 border rounded text-gray-200 border-gray-400 hover:text-white hover:border-white"
+    >
+      <svg
+        class="fill-current h-3 w-3"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>Menu</title>
+        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+      </svg>
+    </button>
+  </div>
+
+  <div
+    class="w-full block flex-grow lg:flex lg:items-center lg:w-auto"
+    [ngClass]="{ hidden: !isOpen }"
+  >
+    <div class="text-sm lg:flex-grow">
+      <a
+        *ngIf="isAuthenticated"
+        class="block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white mr-4"
+        routerLinkActive="nav__link--active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLink="/dashboard"
+        (click)="onOpen()"
+      >
+        Dashboard
+      </a>
+    </div>
+    <div class="w-full block lg:flex lg:items-center lg:w-auto">
+      <a
+        routerLinkActive="nav__link--active"
+        routerLink="/signup"
+        *ngIf="!isAuthenticated"
+        (click)="onOpen()"
+        class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-gray-500 hover:bg-white mt-4 lg:mt-0 mr-4"
+        >Sign-up</a
+      >
+      <a
+        class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-gray-500 hover:bg-white mt-4 lg:mt-0"
+        routerLinkActive="nav__link--active"
+        routerLink="/login"
+        (click)="onOpen()"
+        *ngIf="!isAuthenticated"
+        >Login</a
+      >
+      <span *ngIf="isAuthenticated" class="block text-white"
+        >Hello, {{ user.email }}</span
+      >
+      <a
+        *ngIf="isAuthenticated"
+        class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-gray-500 hover:bg-white mt-4 lg:mt-0 lg:ml-4"
+        routerLinkActive="nav__link--active"
+        (click)="onLogout()"
+        (click)="onOpen()"
+        >Logout</a
+      >
+    </div>
+  </div>
+</nav>
